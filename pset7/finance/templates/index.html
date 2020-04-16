@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+
+{% block body %}
+
+    <table style="width:100%">
+      <tr>
+        <th>Company</th>
+        <th>amount of stocks</th>
+        <th>price</th>
+        <th>total</th>
+      </tr>
+
+        {%- for row in rows %}
+        <tr>
+     <td>{{row.company_name | lookupFullName }}</td>
+     <td>{{row.number_of_stocks}}  </td>
+     <td> {{ row.company_name | lookupPrice | usd}}</td>
+     <td> {{ (row.number_of_stocks * row.company_name | lookupPrice )| usd }}  </td>
+        </tr>
+        {%- endfor %}
+        <tr>
+            <td>CASH</td>
+            <td></td>
+             <td></td>
+             <td> {{cashAvailable | usd}} </td>
+        </tr>
+
+         <tr>
+             <td>Grand Total</td>
+            <td></td>
+             <td></td>
+             <td> {{ grandTotal | usd}}</td>
+        </tr>
+
+    </table>
+
+{% endblock %}
+
+{% endblock %}
